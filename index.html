@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <script src="simpleDypper.js"></script>
+        <script src="uniqueDypper.js"></script>
+        <script>
+            dypper.addPlayer('David');
+            dypper.addPlayer('Moni');
+            dypper.addPlayer('Adam');
+            dypper.addPlayer('Eva');
+            dypper.addPlayer('Tamas');
+            dypper.addPlayer('Nobody');
+            dypper.getRandomPairs();
+        </script>
+        <script>
+            var start = new Date();
+
+
+            uniqueDypper.addPlayer('David');
+            uniqueDypper.addPlayer('Moni');
+            uniqueDypper.addPlayer('Adam');
+            uniqueDypper.addPlayer('Eva');
+            uniqueDypper.addPlayer('Tamas');
+            uniqueDypper.addPlayer('Geza');
+            uniqueDypper.addPlayer('Janos');
+            uniqueDypper.addPlayer('Daniel');
+            uniqueDypper.addPlayer('Rafael');
+            uniqueDypper.addPlayer('Gabor');
+            uniqueDypper.addPlayer('Csaba');
+            uniqueDypper.addPlayer('Laszlo');
+            uniqueDypper.addPlayer('Attila');
+            uniqueDypper.addPlayer('Sandor');
+            uniqueDypper.addPlayer('Gyozo');
+            uniqueDypper.addPlayer('Peter');
+
+            uniqueDypper.addPlayer('David2');
+            uniqueDypper.addPlayer('Moni2');
+            uniqueDypper.addPlayer('Adam2');
+            uniqueDypper.addPlayer('Eva2');
+            uniqueDypper.addPlayer('Tamas2');
+            uniqueDypper.addPlayer('Geza2');
+            uniqueDypper.addPlayer('Janos2');
+            uniqueDypper.addPlayer('Daniel2');
+            uniqueDypper.addPlayer('Rafael2');
+            uniqueDypper.addPlayer('Gabor2');
+            uniqueDypper.addPlayer('Csaba2');
+            uniqueDypper.addPlayer('Laszlo2');
+            uniqueDypper.addPlayer('Attila2');
+            uniqueDypper.addPlayer('Sandor2');
+            uniqueDypper.addPlayer('Gyozo2');
+            uniqueDypper.addPlayer('Peter2');
+
+    //        uniqueDypper.addPlayer('David3');
+    //        uniqueDypper.addPlayer('Moni3');
+    //        uniqueDypper.addPlayer('Adam3');
+    //        uniqueDypper.addPlayer('Eva3');
+    //        uniqueDypper.addPlayer('Tamas3');
+    //        uniqueDypper.addPlayer('Geza3');
+    //        uniqueDypper.addPlayer('Janos3');
+    //        uniqueDypper.addPlayer('Daniel3');
+    //        uniqueDypper.addPlayer('Rafael3');
+    //        uniqueDypper.addPlayer('Gabor3');
+    //        uniqueDypper.addPlayer('Csaba3');
+    //        uniqueDypper.addPlayer('Laszlo3');
+    //        uniqueDypper.addPlayer('Attila3');
+    //        uniqueDypper.addPlayer('Sandor3');
+    //        uniqueDypper.addPlayer('Gyozo3');
+    //        uniqueDypper.addPlayer('Peter3');
+    //
+    //        uniqueDypper.addPlayer('David4');
+    //        uniqueDypper.addPlayer('Moni4');
+    //        uniqueDypper.addPlayer('Adam4');
+    //        uniqueDypper.addPlayer('Eva4');
+    //        uniqueDypper.addPlayer('Tamas4');
+    //        uniqueDypper.addPlayer('Geza4');
+    //        uniqueDypper.addPlayer('Janos4');
+    //        uniqueDypper.addPlayer('Daniel4');
+    //        uniqueDypper.addPlayer('Rafael4');
+    //        uniqueDypper.addPlayer('Gabor4');
+    //        uniqueDypper.addPlayer('Csaba4');
+    //        uniqueDypper.addPlayer('Laszlo4');
+    //        uniqueDypper.addPlayer('Attila4');
+    //        uniqueDypper.addPlayer('Sandor4');
+    //        uniqueDypper.addPlayer('Gyozo4');
+    //        uniqueDypper.addPlayer('Peter4');
+
+            uniqueDypper.maxRounds = 10;
+
+            uniqueDypper.generatePlayersMatrix();
+            uniqueDypper.generateAllPossiblePairs();
+            console.log(uniqueDypper.pairs);
+    //        console.log(uniqueDypper.players);
+            console.log(uniqueDypper.playersMatrix);
+            var time = new Date() - start;
+            console.log("Execution time: " + time/1000);
+        </script>
+
+    </head>
+    <body>
+
+    </body>
+</html>
