@@ -11,6 +11,14 @@ var uniqueDypper = {
         this.players.push(name);
     },
 
+    dropPlayer: function(name)
+    {
+        var playerIndex = this.players.indexOf(name);
+        if (playerIndex >= 0) {
+            this.players.splice(playerIndex, 1);
+        }
+    },
+
     getPlayer: function(playerIndex)
     {
         if ("undefined" != typeof this.players[playerIndex]) {
