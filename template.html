@@ -38,13 +38,23 @@
 
 <div class="panel panel-default container">
     <div class="panel-body" ng-app="myApp" ng-controller="playerCtrl as player">
-        <h2>Játékosok</h2>
+        <div class="row">
+            <div class="col-xs-4">
+                <h2>Játékosok</h2>
+            </div>
+            <div class="col-xs-4">
+                <h2>Párok</h2>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xs-2">
                 <input type="text" class="form-control" id="player_input" placeholder="Játékos" ng-model="player.name">
             </div>
             <div class="col-xs-2">
                 <button type="submit" class="btn btn-success" ng-click="player.add()">Hozzáadás</button>
+            </div>
+            <div class="col-xs-2">
+                <button type="submit" class="btn btn-primary" ng-click="player.getMatches()">Sorsolás</button>
             </div>
         </div>
         <div class="row">&nbsp;</div>
@@ -56,6 +66,13 @@
                         <td class="col-xs-1">
                             <a href="#" ng-click="player.remove(name)">Törlés</a>
                         </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <table class="table table-bordered table-striped">
+                    <tr ng-repeat="pair in player.pairs">
+                        <td>{{pair}}</td>
                     </tr>
                 </table>
             </div>
@@ -75,6 +92,8 @@
     var app = angular.module('myApp', []);
     app.controller('playerCtrl', function($scope) {
         this.players = dypper.players;
+        this.pairs = [];
+
 
         this.add = function() {
             dypper.addPlayer(this.name);
@@ -85,6 +104,11 @@
         this.remove = function(playerName) {
             dypper.dropPlayer(playerName);
             uniqueDypper.dropPlayer(playerName);
+        }
+
+        this.getMatches = function() {
+            dypper.getRandomPairs();
+            this.pairs = dypper.pairs;
         }
     });
 </script>

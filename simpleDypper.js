@@ -20,6 +20,7 @@ var dypper = {
 	getRandomPairs: function()
 	{
 		this.shuffle(this.players);
+        this.pairs = [];
 		for (var i = 0; i < this.players.length; i++) {
 			var pair = this.getPlayer(i) + this.playerDelimiter + this.getPlayer(i+1);
 			i++;
