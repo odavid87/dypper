@@ -107,6 +107,7 @@
 <script>
     var playerApp = angular.module('playerApp', []);
     playerApp.controller('playerCtrl', function($scope) {
+        this.maxRounds = 8;
         this.players = dypper.players;
         this.pairs = [];
 
@@ -124,6 +125,12 @@
         this.getSimpleDypperPairs = function() {
             dypper.getRandomPairs();
             this.pairs = dypper.pairs;
+        }
+
+        this.getUniqueDypperMatches = function() {
+            uniqueDypper.maxRounds = this.maxRounds;
+            uniqueDypper.generatePlayersMatrix();
+            uniqueDypper.generateAllPossiblePairs();
         }
     });
 
