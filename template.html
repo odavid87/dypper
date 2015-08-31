@@ -19,17 +19,17 @@
     <![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 </head>
-<body>
+<body ng-app="playerApp">
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Sorsi system</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="navbar-collapse collapse" ng-controller="gameCtrl as game">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Sima sorsi</a></li>
-                <li><a href="#about">Német sorsi</a></li>
+                <li class="active"><a href="#" ng-click="game.selectFeature('dypper')">Sima sorsi</a></li>
+                <li><a href="#" ng-click="game.selectFeature('uniqueDypper')">Német sorsi</a></li>
 
             </ul>
         </div><!--/.nav-collapse -->
@@ -37,13 +37,16 @@
 </nav>
 
 <div class="panel panel-default container">
-    <div class="panel-body" ng-app="myApp" ng-controller="playerCtrl as player">
+    <div class="panel-body" ng-controller="playerCtrl as player">
         <div class="row">
             <div class="col-xs-4">
                 <h2>Játékosok</h2>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-4" feature="dypper">
                 <h2>Párok</h2>
+            </div>
+            <div class="col-xs-4" feature="uniqueDypper">
+                <h2>Meccsek</h2>
             </div>
         </div>
         <div class="row">
@@ -53,8 +56,14 @@
             <div class="col-xs-2">
                 <button type="submit" class="btn btn-success" ng-click="player.add()">Hozzáadás</button>
             </div>
-            <div class="col-xs-2">
-                <button type="submit" class="btn btn-primary" ng-click="player.getMatches()">Sorsolás</button>
+            <div class="col-md-4" feature="dypper">
+                <button type="submit" class="btn btn-primary" ng-click="player.getSimpleDypperPairs()">Sorsolás</button>
+            </div>
+            <div class="col-md-2" feature="uniqueDypper">
+                <input type="number" class="form-control" id="max_rounds" placeholder="Körök száma" ng-model="player.maxRounds">
+            </div>
+            <div class="col-md-2" feature="uniqueDypper">
+                <button type="submit" class="btn btn-primary" ng-click="player.getUniqueDypperMatches()">Sorsolás</button>
             </div>
         </div>
         <div class="row">&nbsp;</div>
@@ -69,7 +78,14 @@
                     </tr>
                 </table>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" feature="dypper">
+                <table class="table table-bordered table-striped">
+                    <tr ng-repeat="pair in player.pairs">
+                        <td>{{pair}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4" feature="uniqueDypper">
                 <table class="table table-bordered table-striped">
                     <tr ng-repeat="pair in player.pairs">
                         <td>{{pair}}</td>
@@ -89,11 +105,10 @@
 <script src="uniqueDypper.js"></script>
 
 <script>
-    var app = angular.module('myApp', []);
-    app.controller('playerCtrl', function($scope) {
+    var playerApp = angular.module('playerApp', []);
+    playerApp.controller('playerCtrl', function($scope) {
         this.players = dypper.players;
         this.pairs = [];
-
 
         this.add = function() {
             dypper.addPlayer(this.name);
@@ -106,10 +121,26 @@
             uniqueDypper.dropPlayer(playerName);
         }
 
-        this.getMatches = function() {
+        this.getSimpleDypperPairs = function() {
             dypper.getRandomPairs();
             this.pairs = dypper.pairs;
         }
+    });
+
+
+    playerApp.controller('gameCtrl', function($scope){
+        this.defaultFeature = 'dypper';
+
+        this.selectFeature = function(selectedFeature) {
+            this.hideFeatures();
+            $("div[feature="+ selectedFeature +"]").show();
+        }
+
+        this.hideFeatures = function() {
+            $("div[feature]").hide();
+        }
+
+        this.selectFeature(this.defaultFeature);
     });
 </script>
 </body>
